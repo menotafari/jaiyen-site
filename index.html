@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brainvalet</title>
+<meta name="description" content="A second brain that keeps itself. AI-maintained notes, tasks and decisions for founders and solo builders. Talk to it from your phone. It files, wraps your day, and rebuilds itself on any machine.">
+<meta property="og:title" content="Brainvalet">
+<meta property="og:description" content="A second brain that keeps itself.">
+<meta property="og:url" content="https://brainvalet.xyz">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F1114'/%3E%3Ccircle cx='16' cy='16' r='6' fill='none' stroke='%23D4AF5F' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23D4AF5F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+
+<!-- ============================================================
+     WIRING: the two things to replace before launch.
+     1. KIT_ACTION  : your Kit (ConvertKit) form action URL.
+                      Kit > Grow > Landing Pages & Forms > your form > Publish >
+                      "HTML" tab; the <form action="..."> URL looks like
+                      https://app.kit.com/forms/1234567/subscriptions
+     2. STRIPE_LINK : a Stripe Payment Link for the $49 refundable reserve.
+                      Stripe > Payment Links > New > one-time $49 > copy link
+     Until both are set, the form falls back to a mailto and the
+     reserve link stays hidden. Nothing is lost.
+     ============================================================ -->
+<script>
+  window.BRAINVALET = {
+    KIT_ACTION:  "",
+    STRIPE_LINK: ""
+  };
+</script>
+
+<style>
+  :root {
+    --ground:   #F4F1EA;
+    --card:     #FBF9F4;
+    --ink:      #0F1114;
+    --text:     #3A3D42;
+    --muted:    #7C7F85;
+    --rule:     #DDD8CC;
+    --brass:    #A8863E;
+    --brass-hi: #C9A45C;
+    --glow:     #C9A45C2E;
+    --btn-text: #FBF9F4;
+
+    --display: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+    --sans:    'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --mono:    'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+    --measure: 36rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:   #0F1114;
+      --card:     #16191E;
+      --ink:      #EDE8DC;
+      --text:     #B9B4A8;
+      --muted:    #7C7F85;
+      --rule:     #262A31;
+      --brass:    #D4AF5F;
+      --brass-hi: #E6C77E;
+      --glow:     #D4AF5F24;
+      --btn-text: #0F1114;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:   #0F1114;
+    --card:     #16191E;
+    --ink:      #EDE8DC;
+    --text:     #B9B4A8;
+    --muted:    #7C7F85;
+    --rule:     #262A31;
+    --brass:    #D4AF5F;
+    --brass-hi: #E6C77E;
+    --glow:     #D4AF5F24;
+    --btn-text: #0F1114;
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; }
+
+  .wrap { max-width: 64rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* header */
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 0;
+  }
+  .mark {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-family: var(--mono); font-weight: 500; font-size: .95rem;
+    letter-spacing: .02em; color: var(--ink); text-decoration: none;
+  }
+  .mark svg { width: 22px; height: 22px; }
+  .pill {
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--brass);
+    border: 1px solid var(--brass); border-radius: 999px; padding: .3rem .7rem;
+  }
+
+  /* hero */
+  .hero { padding: clamp(3rem, 9vw, 7rem) 0 3rem; }
+  .hero h1 {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(2.75rem, 7.5vw, 5.25rem);
+    line-height: 1.02; letter-spacing: -.015em; color: var(--ink);
+    max-width: 14ch;
+  }
+  .hero h1 em { font-style: italic; color: var(--brass); }
+  .hero p.lede {
+    margin-top: 1.5rem; max-width: var(--measure);
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.55;
+  }
+  .hero p.lede strong { color: var(--ink); font-weight: 500; }
+
+  /* form */
+  .signup { margin-top: 2.25rem; max-width: var(--measure); }
+  .signup form { display: flex; gap: .6rem; flex-wrap: wrap; }
+  .signup input[type=email] {
+    flex: 1 1 16rem; min-width: 0;
+    font: inherit; font-size: 1rem; color: var(--ink);
+    background: var(--card); border: 1px solid var(--rule); border-radius: .6rem;
+    padding: .85rem 1rem; outline: none;
+  }
+  .signup input[type=email]:focus { border-color: var(--brass); box-shadow: 0 0 0 4px var(--glow); }
+  .btn {
+    font: inherit; font-weight: 600; font-size: 1rem; cursor: pointer;
+    background: var(--ink); color: var(--btn-text);
+    border: 0; border-radius: .6rem; padding: .85rem 1.25rem;
+    text-decoration: none; display: inline-flex; align-items: center; gap: .5rem;
+    white-space: nowrap;
+  }
+  .btn:hover { background: var(--brass); color: var(--btn-text); }
+  .reserve { margin-top: .9rem; font-size: .92rem; color: var(--muted); }
+  .reserve a { color: var(--brass); text-decoration: underline; text-underline-offset: 3px; }
+  .reserve a:hover { color: var(--brass-hi); }
+  .thanks { margin-top: 1rem; font-family: var(--mono); font-size: .9rem; color: var(--brass); }
+
+  /* demo slot */
+  .demo {
+    margin: 3.5rem 0 0; border: 1px solid var(--rule); border-radius: 1rem;
+    background: var(--card); aspect-ratio: 16 / 9; overflow: hidden;
+    display: grid; place-items: center; position: relative;
+  }
+  .demo video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .demo .placeholder {
+    text-align: center; padding: 2rem; color: var(--muted);
+    font-family: var(--mono); font-size: .85rem; line-height: 1.7;
+  }
+  .demo .placeholder b { color: var(--ink); font-weight: 500; display: block; font-size: 1rem; }
+
+  /* three moves */
+  .moves {
+    margin-top: 4.5rem; display: grid; gap: 1px; background: var(--rule);
+    border: 1px solid var(--rule); border-radius: 1rem; overflow: hidden;
+  }
+  @media (min-width: 720px) { .moves { grid-template-columns: repeat(3, 1fr); } }
+  .move { background: var(--card); padding: 1.75rem 1.5rem 1.9rem; }
+  .move .k {
+    font-family: var(--mono); font-size: .72rem; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--brass); margin-bottom: .75rem;
+  }
+  .move h2 {
+    font-family: var(--display); font-weight: 400; font-size: 1.75rem;
+    line-height: 1.1; color: var(--ink); margin-bottom: .6rem;
+  }
+  .move p { font-size: .98rem; }
+
+  /* ladder */
+  .ladder { margin-top: 4.5rem; max-width: var(--measure); }
+  .ladder h3 {
+    font-family: var(--display); font-weight: 400; font-size: 2rem; color: var(--ink);
+    line-height: 1.1; margin-bottom: 1rem;
+  }
+  .ladder ol { list-style: none; padding: 0; display: grid; gap: 0; }
+  .ladder li {
+    display: grid; grid-template-columns: 2.25rem 1fr; gap: .75rem; align-items: baseline;
+    padding: .9rem 0; border-top: 1px solid var(--rule);
+  }
+  .ladder li:last-child { border-bottom: 1px solid var(--rule); }
+  .ladder .n { font-family: var(--mono); color: var(--brass); font-size: .85rem; }
+  .ladder b { color: var(--ink); font-weight: 500; }
+  .ladder span { display: block; color: var(--muted); font-size: .92rem; }
+
+  /* footer */
+  footer {
+    margin-top: 5rem; padding: 2rem 0 3rem; border-top: 1px solid var(--rule);
+    display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between;
+    font-family: var(--mono); font-size: .8rem; color: var(--muted);
+  }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--brass); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="mark" href="/" aria-label="Brainvalet home">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="var(--ink)"/>
+        <circle cx="16" cy="16" r="6" fill="none" stroke="var(--brass)" stroke-width="2.5"/>
+        <circle cx="16" cy="16" r="2" fill="var(--brass)"/>
+      </svg>
+      brainvalet
+    </a>
+    <span class="pill">Early access</span>
+  </header>
+
+  <section class="hero">
+    <h1>A second brain that <em>keeps itself.</em></h1>
+    <p class="lede">
+      Brainvalet is an AI-maintained second brain for founders and solo builders.
+      <strong>Talk to it from your phone.</strong> It files the note, wraps your day, logs the
+      decision, and rebuilds itself on any machine from a password manager and a repo.
+    </p>
+
+    <div class="signup">
+      <form id="waitlist" method="post" novalidate>
+        <input type="email" name="email_address" placeholder="you@company.com" required autocomplete="email" aria-label="Email address">
+        <button class="btn" type="submit">Join the waitlist</button>
+      </form>
+      <p class="thanks" id="thanks" hidden>You're on the list. Watch for the first build note.</p>
+      <p class="reserve" id="reserve" hidden>
+        Or <a id="reserve-link" href="#" target="_blank" rel="noopener noreferrer">reserve the launch price, $49</a>.
+        Fully refundable. It moves you to the front of the line.
+      </p>
+    </div>
+
+    <div class="demo" id="demo">
+      <!-- Drop the voice-note demo here: <video src="demo.mp4" autoplay muted loop playsinline></video> -->
+      <div class="placeholder">
+        <b>Demo: a voice note, filed.</b>
+        30 seconds. Phone, transcript, the right folder, the right task, the right log.
+      </div>
+    </div>
+  </section>
+
+  <section class="moves" aria-label="What it does">
+    <div class="move">
+      <div class="k">01 &middot; Capture</div>
+      <h2>Say it, it's filed.</h2>
+      <p>A voice note from anywhere becomes a transcript, a task, a decision, or a page in the right place. Nothing waits for you to sit at a desk.</p>
+    </div>
+    <div class="move">
+      <div class="k">02 &middot; Wrap</div>
+      <h2>The day closes itself.</h2>
+      <p>Every night your agent runs the wrap: session note, sprint state, tomorrow's priority, the decision log, and a re-entry brief so you start warm.</p>
+    </div>
+    <div class="move">
+      <div class="k">03 &middot; Survive</div>
+      <h2>Lose the laptop, keep the brain.</h2>
+      <p>Two machines gone in one week. Rebuilt in an evening from a password manager and a repo. That's the design, not the luck.</p>
+    </div>
+  </section>
+
+  <section class="ladder" aria-label="How you can get it">
+    <h3>Three ways in.</h3>
+    <ol>
+      <li><span class="n">01</span><div><b>The kit.</b><span>The vault, the CLI, the wrap ritual, the capture bot. Install it yourself in an afternoon.</span></div></li>
+      <li><span class="n">02</span><div><b>The install.</b><span>We set it up on your machines, your agent, your phone. You start with it already running.</span></div></li>
+      <li><span class="n">03</span><div><b>The valet.</b><span>Monthly. We keep it tuned, upgraded and backed up while you get on with the work.</span></div></li>
+    </ol>
+  </section>
+
+  <footer>
+    <span>Built in Bangkok by a solo founder who lost two laptops and didn't lose a note.</span>
+    <span><a href="mailto:hello@brainvalet.xyz">hello@brainvalet.xyz</a></span>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var cfg = window.BRAINVALET || {};
+    var form = document.getElementById('waitlist');
+    var thanks = document.getElementById('thanks');
+    var reserve = document.getElementById('reserve');
+    var reserveLink = document.getElementById('reserve-link');
+
+    if (cfg.STRIPE_LINK) { reserveLink.href = cfg.STRIPE_LINK; reserve.hidden = false; }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = form.email_address.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { form.email_address.focus(); return; }
+
+      if (!cfg.KIT_ACTION) {
+        window.location.href = 'mailto:hello@brainvalet.xyz?subject=Waitlist&body=' + encodeURIComponent(email);
+        return;
+      }
+      var body = new FormData();
+      body.append('email_address', email);
+      fetch(cfg.KIT_ACTION, { method: 'POST', body: body, headers: { Accept: 'application/json' } })
+        .then(function () { form.hidden = true; thanks.hidden = false; })
+        .catch(function () { form.hidden = true; thanks.hidden = false; });
+    });
+  })();
+</script>
+</body>
+</html>
