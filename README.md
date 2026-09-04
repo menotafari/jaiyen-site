@@ -1,6 +1,6 @@
-# brainvalet.xyz
+# sawang.xyz
 
-Public site for Brainvalet. This repo holds only index.html and CNAME.
+Public site for Sawang. This repo holds only index.html and CNAME.
 Strategy docs live elsewhere and are deliberately not here.
 
 Before launch, set the two values at the top of index.html:

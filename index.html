@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brainvalet</title>
-<meta name="description" content="A second brain that keeps itself. AI-maintained notes, tasks and decisions for founders and solo builders. Talk to it from your phone. It files, wraps your day, and rebuilds itself on any machine.">
-<meta property="og:title" content="Brainvalet">
-<meta property="og:description" content="A second brain that keeps itself.">
-<meta property="og:url" content="https://brainvalet.xyz">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F1114'/%3E%3Ccircle cx='16' cy='16' r='6' fill='none' stroke='%23D4AF5F' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23D4AF5F'/%3E%3C/svg%3E">
+<title>Sawang</title>
+<meta name="description" content="Sawang is a second brain that keeps itself. Talk to it from your phone, it files the note, wraps your day, and greets you every morning with the one thing that matters. Direction, daily.">
+<meta property="og:title" content="Sawang">
+<meta property="og:description" content="Direction, daily. A second brain that keeps itself.">
+<meta property="og:url" content="https://sawang.xyz">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F1114'/%3E%3Cpath d='M9 19a7 7 0 0 1 14 0' fill='none' stroke='%23F0A25A' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M7 22h18' stroke='%23F0A25A' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
@@ -25,7 +25,7 @@
      reserve link stays hidden. Nothing is lost.
      ============================================================ -->
 <script>
-  window.BRAINVALET = {
+  window.SAWANG = {
     KIT_ACTION:  "",
     STRIPE_LINK: ""
   };
@@ -33,16 +33,16 @@
 
 <style>
   :root {
-    --ground:   #F4F1EA;
-    --card:     #FBF9F4;
-    --ink:      #0F1114;
-    --text:     #3A3D42;
-    --muted:    #7C7F85;
-    --rule:     #DDD8CC;
-    --brass:    #A8863E;
-    --brass-hi: #C9A45C;
-    --glow:     #C9A45C2E;
-    --btn-text: #FBF9F4;
+    --ground:   #F6F1E8;
+    --card:     #FCF9F3;
+    --ink:      #14151A;
+    --text:     #3D3E44;
+    --muted:    #7E7F86;
+    --rule:     #E2DACB;
+    --dawn:     #C9671F;
+    --dawn-hi:  #E08A45;
+    --glow:     #E08A4533;
+    --btn-text: #FCF9F3;
 
     --display: 'Instrument Serif', 'Times New Roman', Georgia, serif;
     --sans:    'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -54,26 +54,26 @@
     :root:not([data-theme="light"]) {
       --ground:   #0F1114;
       --card:     #16191E;
-      --ink:      #EDE8DC;
-      --text:     #B9B4A8;
-      --muted:    #7C7F85;
-      --rule:     #262A31;
-      --brass:    #D4AF5F;
-      --brass-hi: #E6C77E;
-      --glow:     #D4AF5F24;
+      --ink:      #EFE8DA;
+      --text:     #BBB5A7;
+      --muted:    #7E7F86;
+      --rule:     #272B32;
+      --dawn:     #F0A25A;
+      --dawn-hi:  #F7BC85;
+      --glow:     #F0A25A26;
       --btn-text: #0F1114;
     }
   }
   :root[data-theme="dark"] {
     --ground:   #0F1114;
     --card:     #16191E;
-    --ink:      #EDE8DC;
-    --text:     #B9B4A8;
-    --muted:    #7C7F85;
-    --rule:     #262A31;
-    --brass:    #D4AF5F;
-    --brass-hi: #E6C77E;
-    --glow:     #D4AF5F24;
+    --ink:      #EFE8DA;
+    --text:     #BBB5A7;
+    --muted:    #7E7F86;
+    --rule:     #272B32;
+    --dawn:     #F0A25A;
+    --dawn-hi:  #F7BC85;
+    --glow:     #F0A25A26;
     --btn-text: #0F1114;
   }
 
@@ -106,19 +106,24 @@
   .mark svg { width: 22px; height: 22px; }
   .pill {
     font-family: var(--mono); font-size: .72rem; letter-spacing: .08em;
-    text-transform: uppercase; color: var(--brass);
-    border: 1px solid var(--brass); border-radius: 999px; padding: .3rem .7rem;
+    text-transform: uppercase; color: var(--dawn);
+    border: 1px solid var(--dawn); border-radius: 999px; padding: .3rem .7rem;
   }
 
   /* hero */
   .hero { padding: clamp(3rem, 9vw, 7rem) 0 3rem; }
+  .hero .eyebrow {
+    font-family: var(--mono); font-size: .8rem; color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+  .hero .eyebrow b { color: var(--dawn); font-weight: 500; }
   .hero h1 {
     font-family: var(--display); font-weight: 400;
     font-size: clamp(2.75rem, 7.5vw, 5.25rem);
     line-height: 1.02; letter-spacing: -.015em; color: var(--ink);
     max-width: 14ch;
   }
-  .hero h1 em { font-style: italic; color: var(--brass); }
+  .hero h1 em { font-style: italic; color: var(--dawn); }
   .hero p.lede {
     margin-top: 1.5rem; max-width: var(--measure);
     font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.55;
@@ -134,7 +139,7 @@
     background: var(--card); border: 1px solid var(--rule); border-radius: .6rem;
     padding: .85rem 1rem; outline: none;
   }
-  .signup input[type=email]:focus { border-color: var(--brass); box-shadow: 0 0 0 4px var(--glow); }
+  .signup input[type=email]:focus { border-color: var(--dawn); box-shadow: 0 0 0 4px var(--glow); }
   .btn {
     font: inherit; font-weight: 600; font-size: 1rem; cursor: pointer;
     background: var(--ink); color: var(--btn-text);
@@ -142,16 +147,17 @@
     text-decoration: none; display: inline-flex; align-items: center; gap: .5rem;
     white-space: nowrap;
   }
-  .btn:hover { background: var(--brass); color: var(--btn-text); }
+  .btn:hover { background: var(--dawn); color: var(--btn-text); }
   .reserve { margin-top: .9rem; font-size: .92rem; color: var(--muted); }
-  .reserve a { color: var(--brass); text-decoration: underline; text-underline-offset: 3px; }
-  .reserve a:hover { color: var(--brass-hi); }
-  .thanks { margin-top: 1rem; font-family: var(--mono); font-size: .9rem; color: var(--brass); }
+  .reserve a { color: var(--dawn); text-decoration: underline; text-underline-offset: 3px; }
+  .reserve a:hover { color: var(--dawn-hi); }
+  .thanks { margin-top: 1rem; font-family: var(--mono); font-size: .9rem; color: var(--dawn); }
 
   /* demo slot */
   .demo {
     margin: 3.5rem 0 0; border: 1px solid var(--rule); border-radius: 1rem;
-    background: var(--card); aspect-ratio: 16 / 9; overflow: hidden;
+    background: linear-gradient(180deg, var(--card) 0%, var(--card) 70%, var(--glow) 100%);
+    aspect-ratio: 16 / 9; overflow: hidden;
     display: grid; place-items: center; position: relative;
   }
   .demo video { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -170,7 +176,7 @@
   .move { background: var(--card); padding: 1.75rem 1.5rem 1.9rem; }
   .move .k {
     font-family: var(--mono); font-size: .72rem; letter-spacing: .1em;
-    text-transform: uppercase; color: var(--brass); margin-bottom: .75rem;
+    text-transform: uppercase; color: var(--dawn); margin-bottom: .75rem;
   }
   .move h2 {
     font-family: var(--display); font-weight: 400; font-size: 1.75rem;
@@ -190,7 +196,7 @@
     padding: .9rem 0; border-top: 1px solid var(--rule);
   }
   .ladder li:last-child { border-bottom: 1px solid var(--rule); }
-  .ladder .n { font-family: var(--mono); color: var(--brass); font-size: .85rem; }
+  .ladder .n { font-family: var(--mono); color: var(--dawn); font-size: .85rem; }
   .ladder b { color: var(--ink); font-weight: 500; }
   .ladder span { display: block; color: var(--muted); font-size: .92rem; }
 
@@ -201,30 +207,31 @@
     font-family: var(--mono); font-size: .8rem; color: var(--muted);
   }
   footer a { text-decoration: none; }
-  footer a:hover { color: var(--brass); }
+  footer a:hover { color: var(--dawn); }
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header>
-    <a class="mark" href="/" aria-label="Brainvalet home">
+    <a class="mark" href="/" aria-label="Sawang home">
       <svg viewBox="0 0 32 32" aria-hidden="true">
         <rect width="32" height="32" rx="7" fill="var(--ink)"/>
-        <circle cx="16" cy="16" r="6" fill="none" stroke="var(--brass)" stroke-width="2.5"/>
-        <circle cx="16" cy="16" r="2" fill="var(--brass)"/>
+        <path d="M9 19a7 7 0 0 1 14 0" fill="none" stroke="var(--dawn)" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M7 22h18" stroke="var(--dawn)" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
-      brainvalet
+      sawang
     </a>
     <span class="pill">Early access</span>
   </header>
 
   <section class="hero">
-    <h1>A second brain that <em>keeps itself.</em></h1>
+    <p class="eyebrow"><b>sawang</b> &middot; Thai, สว่าง &middot; bright, clear, daybreak</p>
+    <h1>Direction, <em>daily.</em></h1>
     <p class="lede">
-      Brainvalet is an AI-maintained second brain for founders and solo builders.
-      <strong>Talk to it from your phone.</strong> It files the note, wraps your day, logs the
-      decision, and rebuilds itself on any machine from a password manager and a repo.
+      Sawang is a second brain that keeps itself. <strong>Talk to it from your phone.</strong>
+      It files the note, wraps your day, and greets you every morning with the one thing
+      that matters. Less noise. More light.
     </p>
 
     <div class="signup">
@@ -240,10 +247,10 @@
     </div>
 
     <div class="demo" id="demo">
-      <!-- Drop the voice-note demo here: <video src="demo.mp4" autoplay muted loop playsinline></video> -->
+      <!-- Drop the demo here: <video src="demo.mp4" autoplay muted loop playsinline></video> -->
       <div class="placeholder">
-        <b>Demo: a voice note, filed.</b>
-        30 seconds. Phone, transcript, the right folder, the right task, the right log.
+        <b>Demo: a voice note at night, a brief at dawn.</b>
+        30 seconds. Phone, transcript, the right place, and tomorrow already sorted.
       </div>
     </div>
   </section>
@@ -252,39 +259,39 @@
     <div class="move">
       <div class="k">01 &middot; Capture</div>
       <h2>Say it, it's filed.</h2>
-      <p>A voice note from anywhere becomes a transcript, a task, a decision, or a page in the right place. Nothing waits for you to sit at a desk.</p>
+      <p>A voice note from anywhere becomes a task, a decision, or a page in the right place. Nothing waits for you to sit at a desk.</p>
     </div>
     <div class="move">
       <div class="k">02 &middot; Wrap</div>
       <h2>The day closes itself.</h2>
-      <p>Every night your agent runs the wrap: session note, sprint state, tomorrow's priority, the decision log, and a re-entry brief so you start warm.</p>
+      <p>Every night it runs the wrap: what moved, what's blocked, what you decided, and a re-entry brief so tomorrow starts warm.</p>
     </div>
     <div class="move">
-      <div class="k">03 &middot; Survive</div>
-      <h2>Lose the laptop, keep the brain.</h2>
-      <p>Two machines gone in one week. Rebuilt in an evening from a password manager and a repo. That's the design, not the luck.</p>
+      <div class="k">03 &middot; Daybreak</div>
+      <h2>Wake up to one thing.</h2>
+      <p>Every morning, a brief that knows your goals, your ventures, your body and your week, and hands you the single most important move.</p>
     </div>
   </section>
 
   <section class="ladder" aria-label="How you can get it">
     <h3>Three ways in.</h3>
     <ol>
-      <li><span class="n">01</span><div><b>The kit.</b><span>The vault, the CLI, the wrap ritual, the capture bot. Install it yourself in an afternoon.</span></div></li>
-      <li><span class="n">02</span><div><b>The install.</b><span>We set it up on your machines, your agent, your phone. You start with it already running.</span></div></li>
+      <li><span class="n">01</span><div><b>The kit.</b><span>The vault, the rituals, the capture bot. Yours, open format, install it yourself in an afternoon.</span></div></li>
+      <li><span class="n">02</span><div><b>The install.</b><span>We migrate your notes from wherever they live and set it up on your machines and your phone. You start already running.</span></div></li>
       <li><span class="n">03</span><div><b>The valet.</b><span>Monthly. We keep it tuned, upgraded and backed up while you get on with the work.</span></div></li>
     </ol>
   </section>
 
   <footer>
     <span>Built in Bangkok by a solo founder who lost two laptops and didn't lose a note.</span>
-    <span><a href="mailto:hello@brainvalet.xyz">hello@brainvalet.xyz</a></span>
+    <span><a href="mailto:hello@sawang.xyz">hello@sawang.xyz</a></span>
   </footer>
 
 </div>
 
 <script>
   (function () {
-    var cfg = window.BRAINVALET || {};
+    var cfg = window.SAWANG || {};
     var form = document.getElementById('waitlist');
     var thanks = document.getElementById('thanks');
     var reserve = document.getElementById('reserve');
@@ -298,7 +305,7 @@
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { form.email_address.focus(); return; }
 
       if (!cfg.KIT_ACTION) {
-        window.location.href = 'mailto:hello@brainvalet.xyz?subject=Waitlist&body=' + encodeURIComponent(email);
+        window.location.href = 'mailto:hello@sawang.xyz?subject=Waitlist&body=' + encodeURIComponent(email);
         return;
       }
       var body = new FormData();
