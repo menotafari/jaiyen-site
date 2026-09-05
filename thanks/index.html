@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sawang</title>
-<meta name="description" content="Sawang is a second brain that keeps itself. Talk to it from your phone, it files the note, wraps your day, and greets you every morning with the one thing that matters. Direction, daily.">
-<meta property="og:title" content="Sawang">
-<meta property="og:description" content="Direction, daily. A second brain that keeps itself.">
-<meta property="og:url" content="https://sawang.xyz">
+<title>Sawang — you're on the list</title>
+<meta name="description" content="You're on the list. Two rituals to run tonight and tomorrow morning, by hand.">
+<meta property="og:title" content="Sawang — you're on the list">
+<meta property="og:description" content="Two rituals to run tonight and tomorrow morning, by hand.">
+<meta property="og:url" content="https://sawang.xyz/thanks/">
+<meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F1114'/%3E%3Cpath d='M9 19a7 7 0 0 1 14 0' fill='none' stroke='%23F0A25A' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M7 22h18' stroke='%23F0A25A' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -194,10 +195,25 @@
   footer a { text-decoration: none; }
   footer a:hover { color: var(--dawn); }
 </style>
+
+<style>
+  .ritual { margin-top: 3rem; border: 1px solid var(--rule); border-radius: 1rem; background: var(--card); padding: 1.75rem 1.5rem 1.9rem; }
+  .ritual .k { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dawn); margin-bottom: .6rem; }
+  .ritual h2 { font-family: var(--display); font-weight: 400; font-size: 2rem; line-height: 1.1; color: var(--ink); }
+  .ritual p { margin-top: .6rem; }
+  .ritual pre { margin-top: 1.1rem; white-space: pre-wrap; font-family: var(--mono); font-size: .86rem; line-height: 1.6; color: var(--text); background: var(--ground); border: 1px solid var(--rule); border-radius: .6rem; padding: 1rem 1.1rem; }
+  .copy { margin-top: .9rem; font-size: .95rem; padding: .7rem 1.1rem; }
+  .notice { margin-top: 1rem; font-size: .95rem; color: var(--dawn); }
+  .notice a { color: inherit; }
+  .block { margin-top: 3rem; max-width: var(--measure); }
+  .block h3 { font-family: var(--display); font-weight: 400; font-size: 2rem; line-height: 1.1; color: var(--ink); margin-bottom: .75rem; }
+  .block ul { padding-left: 1.1rem; display: grid; gap: .4rem; }
+  .cross { margin-top: 3rem; font-size: .95rem; color: var(--muted); max-width: var(--measure); }
+  .cross a { color: var(--dawn); text-decoration: underline; text-underline-offset: 3px; }
+</style>
 </head>
 <body>
 <div class="wrap">
-
   <header>
     <a class="mark" href="/" aria-label="Sawang home">
       <svg viewBox="0 0 32 32" aria-hidden="true">
@@ -211,93 +227,102 @@
   </header>
 
   <section class="hero">
-    <p class="eyebrow"><b>sawang</b> &middot; Thai, สว่าง &middot; bright, clear, daybreak</p>
-    <h1>Direction, <em>daily.</em></h1>
+    <p class="eyebrow"><b>sawang</b> &middot; you're on the list</p>
+    <h1>Tonight, <em>the wrap.</em><br>Tomorrow, one thing.</h1>
     <p class="lede">
-      Sawang is a second brain that keeps itself. <strong>Talk to it from your phone.</strong>
-      It files the note, wraps your day, and greets you every morning with the one thing
-      that matters. Less noise. More light.
+      Sawang is the rituals more than the software. Here are the two you can run by hand, tonight and
+      tomorrow morning, with whatever assistant you already use. <strong>Paste your day into the wrap.
+      Paste the wrap into daybreak.</strong> That's the product, by hand.
     </p>
-
-    <div class="signup">
-      <form id="waitlist" method="post" novalidate>
-        <input type="email" name="email_address" placeholder="you@company.com" required autocomplete="email" aria-label="Email address">
-        <button class="btn" type="submit">Join the waitlist</button>
-      </form>
-      <p class="thanks" id="thanks" hidden>You're on the list. Watch for the first build note.</p>
-      <p class="reserve" id="reserve" hidden>
-        Or <a id="reserve-link" href="#" target="_blank" rel="noopener noreferrer">reserve the launch price, $49</a>.
-        Fully refundable. It moves you to the front of the line.
-      </p>
-    </div>
-
-    <div class="demo" id="demo">
-      <!-- Drop the demo here: <video src="demo.mp4" autoplay muted loop playsinline></video> -->
-      <div class="placeholder">
-        <b>Demo: a voice note at night, a brief at dawn.</b>
-        30 seconds. Phone, transcript, the right place, and tomorrow already sorted.
-      </div>
-    </div>
+    <p class="notice" id="notsent" hidden>
+      Something went wrong on our side saving your email. Write to
+      <a href="mailto:hello@sawang.xyz">hello@sawang.xyz</a> and you're on the list.
+    </p>
   </section>
 
-  <section class="moves" aria-label="What it does">
-    <div class="move">
-      <div class="k">01 &middot; Capture</div>
-      <h2>Say it, it's filed.</h2>
-      <p>A voice note from anywhere becomes a task, a decision, or a page in the right place. Nothing waits for you to sit at a desk.</p>
-    </div>
-    <div class="move">
-      <div class="k">02 &middot; Wrap</div>
-      <h2>The day closes itself.</h2>
-      <p>Every night it runs the wrap: what moved, what's blocked, what you decided, and a re-entry brief so tomorrow starts warm.</p>
-    </div>
-    <div class="move">
-      <div class="k">03 &middot; Daybreak</div>
-      <h2>Wake up to one thing.</h2>
-      <p>Every morning, a brief that knows your goals, your ventures, your body and your week, and hands you the single most important move.</p>
-    </div>
+  <section class="ritual">
+    <p class="k">01 &middot; nightly &middot; ten minutes</p>
+    <h2>The wrap</h2>
+    <p>Paste the day in. Out comes what moved, what's blocked, what you decided, the loose threads, and a three-line re-entry brief so tomorrow starts warm.</p>
+    <pre id="wrap">You are closing my day. Below are my notes, messages and to-dos from today, pasted raw. Read all of it before writing anything.
+
+Write me a wrap with exactly these five sections, in this order:
+
+1. What moved — what actually got done today, one line each, with the decision behind it where there was one.
+2. What's blocked — anything that stalled, and the one thing (or person) that unblocks it.
+3. What I decided — every decision I made today as one line: the decision, why, and when to revisit it.
+4. Loose threads — things I mentioned, promised or started and did not close. Include the ones I'd rather forget.
+5. Re-entry brief for tomorrow — three lines: where I am, the one thing that matters tomorrow, and the first ten minutes.
+
+Rules: keep it under 200 words. Use my words, not yours. If something isn't in the notes, write "not in today's notes" rather than guessing. No praise, no motivation, no summary of the summary. End with one question at most, and only if the answer changes tomorrow's one thing.
+
+Today's notes:
+[paste everything here]</pre>
+    <button class="btn copy" type="button" data-copy="wrap">Copy the wrap</button>
   </section>
 
-  <section class="ladder" aria-label="How you can get it">
-    <h3>Three ways in.</h3>
-    <ol>
-      <li><span class="n">01</span><div><b>The kit.</b><span>The vault, the rituals, the capture bot. Yours, open format, install it yourself in an afternoon.</span></div></li>
-      <li><span class="n">02</span><div><b>The install.</b><span>We migrate your notes from wherever they live and set it up on your machines and your phone. You start already running.</span></div></li>
-      <li><span class="n">03</span><div><b>The valet.</b><span>Monthly. We keep it tuned, upgraded and backed up while you get on with the work.</span></div></li>
-    </ol>
+  <section class="ritual">
+    <p class="k">02 &middot; morning &middot; five minutes</p>
+    <h2>Daybreak</h2>
+    <p>Last night's wrap, your goals, today's calendar, one line on how you feel. Out comes one thing, what to protect, what to ignore, and the first physical action.</p>
+    <pre id="daybreak">You are my morning brief. Inputs, pasted below: last night's wrap, my goals (three lines, one per venture or area of life), today's calendar, and one line on how I slept and feel.
+
+Write me a brief with exactly these parts:
+
+1. The one thing — the single move today that matters most, and one sentence on why it beats the others.
+2. Protect — the block of time it needs, and what I'll say no to in order to keep it.
+3. Ignore today — two or three things that will ask for attention and don't deserve it today. Name them.
+4. Stale — any goal that hasn't moved in seven days, in one line, without commentary.
+5. First action — the first physical thing I do when I stand up from reading this. Concrete: open X, call Y, write the first sentence of Z.
+
+Rules: under 120 words. Match the energy to how I said I feel; a tired day gets a smaller one thing, not a pep talk. Never invent a goal or a meeting that isn't in the inputs. No emojis.
+
+Inputs:
+[paste everything here]</pre>
+    <button class="btn copy" type="button" data-copy="daybreak">Copy daybreak</button>
   </section>
+
+  <section class="block" id="reserve" hidden>
+    <h3>The front of the line.</h3>
+    <p>The first cohort is small, because every install is done by hand. Reserve the launch price for $49, fully refundable, no questions. It moves you to the front of the line.</p>
+    <p style="margin-top:1rem"><a class="btn" id="reserve-link" href="#">Reserve for $49</a></p>
+  </section>
+
+  <section class="block">
+    <h3>What to expect</h3>
+    <ul>
+      <li>One email now, with these two rituals and a question back.</li>
+      <li>Build notes every other week: what shipped, what a user said, one screenshot.</li>
+      <li>The Friday wrap: my own week, closed in public, numbers included.</li>
+      <li>Reply to any of them. It's a person.</li>
+    </ul>
+  </section>
+
+  <p class="cross">
+    Also from this desk: <a href="https://frontrowstudio.xyz/check">the Front Row Check</a> &mdash; the three
+    places a business loses a customer, checked for yours, free.
+  </p>
 
   <footer>
     <span>Built in Bangkok by a solo founder who lost two laptops and didn't lose a note.</span>
-    <span><a href="mailto:hello@sawang.xyz">hello@sawang.xyz</a></span>
+    <a href="mailto:hello@sawang.xyz">hello@sawang.xyz</a>
   </footer>
-
 </div>
-
 <script>
   (function () {
     var cfg = window.SAWANG || {};
-    var form = document.getElementById('waitlist');
-    var thanks = document.getElementById('thanks');
-    var reserve = document.getElementById('reserve');
-    var reserveLink = document.getElementById('reserve-link');
-
-    if (cfg.STRIPE_LINK) { reserveLink.href = cfg.STRIPE_LINK; reserve.hidden = false; }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var email = form.email_address.value.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { form.email_address.focus(); return; }
-
-      if (!cfg.KIT_ACTION) {
-        window.location.href = 'mailto:hello@sawang.xyz?subject=Waitlist&body=' + encodeURIComponent(email);
-        return;
-      }
-      var body = new FormData();
-      body.append('email_address', email);
-      fetch(cfg.KIT_ACTION, { method: 'POST', body: body, headers: { Accept: 'application/json' } })
-        .then(function () { window.location.href = '/thanks/'; })
-        .catch(function () { window.location.href = '/thanks/?sent=0'; });
+    if (cfg.STRIPE_LINK) {
+      document.getElementById('reserve-link').href = cfg.STRIPE_LINK;
+      document.getElementById('reserve').hidden = false;
+    }
+    if (/[?&]sent=0/.test(location.search)) document.getElementById('notsent').hidden = false;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function (btn) {
+      btn.addEventListener('click', function () {
+        var el = document.getElementById(btn.getAttribute('data-copy'));
+        var done = function () { var was = btn.textContent; btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = was; }, 1600); };
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(el.textContent).then(done, done); }
+        else { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); try { document.execCommand('copy'); } catch (e) {} done(); }
+      });
     });
   })();
 </script>
