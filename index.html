@@ -289,13 +289,11 @@
       var email = form.email_address.value.trim();
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { form.email_address.focus(); return; }
 
-      if (!cfg.KIT_ACTION) {
+      if (!cfg.LEAD_ENDPOINT) {
         window.location.href = 'mailto:hello@sawang.xyz?subject=Waitlist&body=' + encodeURIComponent(email);
         return;
       }
-      var body = new FormData();
-      body.append('email_address', email);
-      fetch(cfg.KIT_ACTION, { method: 'POST', body: body, headers: { Accept: 'application/json' } })
+      fetch(cfg.LEAD_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ door: 'sawang', email: email, referrer: window.location.href }) })
         .then(function () { window.location.href = '/thanks/'; })
         .catch(function () { window.location.href = '/thanks/?sent=0'; });
     });
