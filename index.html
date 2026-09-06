@@ -293,7 +293,7 @@
         window.location.href = 'mailto:hello@jaiyen.xyz?subject=Waitlist&body=' + encodeURIComponent(email);
         return;
       }
-      fetch(cfg.LEAD_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ door: 'sawang', email: email, referrer: window.location.href }) })
+      fetch(cfg.LEAD_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ door: 'jaiyen', email: email, referrer: window.location.href }) })
         .then(function () { window.location.href = '/thanks/'; })
         .catch(function () { window.location.href = '/thanks/?sent=0'; });
     });
