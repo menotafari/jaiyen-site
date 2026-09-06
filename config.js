@@ -5,7 +5,7 @@
 //   STRIPE_LINK   : a Stripe Payment Link for the $49 refundable reserve.
 // Until LEAD_ENDPOINT is set the form falls back to a mailto; until STRIPE_LINK is set the
 // reserve link stays hidden. Nothing is lost either way.
-window.SAWANG = {
+window.JAIYEN = {
   LEAD_ENDPOINT: "https://frontrowstudio.xyz/api/lead",
   STRIPE_LINK: ""
 };

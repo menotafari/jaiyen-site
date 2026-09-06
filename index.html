@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sawang</title>
-<meta name="description" content="Sawang is a second brain that keeps itself. Talk to it from your phone, it files the note, wraps your day, and greets you every morning with the one thing that matters. Direction, daily.">
-<meta property="og:title" content="Sawang">
+<title>JaiYen</title>
+<meta name="description" content="JaiYen is a second brain that keeps itself. Talk to it from your phone, it files the note, wraps your day, and greets you every morning with the one thing that matters. Direction, daily.">
+<meta property="og:title" content="JaiYen">
 <meta property="og:description" content="Direction, daily. A second brain that keeps itself.">
-<meta property="og:url" content="https://sawang.xyz">
+<meta property="og:url" content="https://jaiyen.xyz">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F1114'/%3E%3Cpath d='M9 19a7 7 0 0 1 14 0' fill='none' stroke='%23F0A25A' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M7 22h18' stroke='%23F0A25A' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -199,22 +199,22 @@
 <div class="wrap">
 
   <header>
-    <a class="mark" href="/" aria-label="Sawang home">
+    <a class="mark" href="/" aria-label="JaiYen home">
       <svg viewBox="0 0 32 32" aria-hidden="true">
         <rect width="32" height="32" rx="7" fill="var(--ink)"/>
         <path d="M9 19a7 7 0 0 1 14 0" fill="none" stroke="var(--dawn)" stroke-width="2.5" stroke-linecap="round"/>
         <path d="M7 22h18" stroke="var(--dawn)" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
-      sawang
+      jaiyen
     </a>
     <span class="pill">Early access</span>
   </header>
 
   <section class="hero">
-    <p class="eyebrow"><b>sawang</b> &middot; Thai, สว่าง &middot; bright, clear, daybreak</p>
+    <p class="eyebrow"><b>jaiyen</b> &middot; Thai, ใจเย็น &middot; cool heart, calm</p>
     <h1>Direction, <em>daily.</em></h1>
     <p class="lede">
-      Sawang is a second brain that keeps itself. <strong>Talk to it from your phone.</strong>
+      JaiYen is a second brain that keeps itself. <strong>Talk to it from your phone.</strong>
       It files the note, wraps your day, and greets you every morning with the one thing
       that matters. Less noise. More light.
     </p>
@@ -268,15 +268,15 @@
   </section>
 
   <footer>
-    <span>Built in Bangkok by a solo founder who lost two laptops and didn't lose a note.</span>
-    <span><a href="mailto:hello@sawang.xyz">hello@sawang.xyz</a></span>
+    <span>Built in Bangkok by a solo founder who lost two machines in one week and didn't lose a note, rebuilt from a password manager and a repo.</span>
+    <span><a href="mailto:hello@jaiyen.xyz">hello@jaiyen.xyz</a></span>
   </footer>
 
 </div>
 
 <script>
   (function () {
-    var cfg = window.SAWANG || {};
+    var cfg = window.JAIYEN || {};
     var form = document.getElementById('waitlist');
     var thanks = document.getElementById('thanks');
     var reserve = document.getElementById('reserve');
@@ -290,7 +290,7 @@
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { form.email_address.focus(); return; }
 
       if (!cfg.LEAD_ENDPOINT) {
-        window.location.href = 'mailto:hello@sawang.xyz?subject=Waitlist&body=' + encodeURIComponent(email);
+        window.location.href = 'mailto:hello@jaiyen.xyz?subject=Waitlist&body=' + encodeURIComponent(email);
         return;
       }
       fetch(cfg.LEAD_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ door: 'sawang', email: email, referrer: window.location.href }) })

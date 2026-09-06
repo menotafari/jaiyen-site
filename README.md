@@ -1,6 +1,6 @@
-# sawang.xyz
+# jaiyen.xyz
 
-Public site for Sawang. This repo holds only the pages, `config.js` and CNAME.
+Public site for JaiYen. This repo holds only the pages, `config.js` and CNAME.
 Strategy docs live elsewhere and are deliberately not here.
 
 - `index.html` — the waitlist (the squeeze page).
